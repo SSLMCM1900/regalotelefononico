@@ -1,0 +1,480 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: Arial;
+    }
+
+    #regolamento {
+      width: 300px;
+      height: 200px;
+      resize: none; /* blocca ridimensionamento */
+      font-size: 14px;
+      padding: 8px;
+    }
+
+    .container {
+      display: flex;
+      align-items: flex-start;
+      gap: 40px;
+      margin: 20px;
+    }
+
+    table {
+      border-collapse: collapse;
+    }
+
+
+
+    .controlli {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+
+
+    .colonna-input {
+      display: flex;
+      flex-direction: column;
+      margin-top: 0px; /* se serve regolare: prova 1px o 2px */
+      display: none;
+    }
+
+
+    .codifica {
+      display: none;
+    }
+
+      .codifica td {
+        border: 1px solid #ccc;
+        width: 60px;
+        height: 25px;
+        text-align: center;
+        font-size: 12px;
+      }
+
+
+      .colonna-input input {
+        height: 29px; /* leggermente più grande di 28 */
+        width: 35px;
+        font-size: 12px;
+        text-align: center;
+        border: 1px solid #ccc;
+        padding: 0;
+        margin: 0;
+      }
+
+
+
+    td {
+      border: 1px solid #ccc;
+      width: 28px;
+      height: 28px;
+      text-align: center;
+      font-size: 14px;
+      background: white;
+    }
+
+      td.active {
+        background-color: yellow;
+      }
+
+
+
+    .lista {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+
+      .lista input {
+        width: 160px;
+        padding: 3px;
+        font-size: 12px;
+        border: 1px solid #ccc;
+        background: #f8f8f8;
+      }
+
+    ``
+  </style>
+</head>
+<body>
+
+  <div style="display: flex;" id="griglia" class="container">
+
+    <!-- GRIGLIA -->
+    <table>
+      <tr><td>9</td><td>1</td><td>6</td><td>4</td><td>4</td><td>0</td><td>3</td><td>8</td><td>0</td><td>7</td><td>7</td><td>6</td><td>7</td><td>3</td><td>1</td><td>8</td><td>6</td><td>9</td><td>8</td><td>6</td></tr>
+      <tr><td>8</td><td>9</td><td>3</td><td>4</td><td>9</td><td>0</td><td>7</td><td>5</td><td>5</td><td>0</td><td>3</td><td>7</td><td>8</td><td>7</td><td>5</td><td>0</td><td>4</td><td>6</td><td>9</td><td>3</td></tr>
+      <tr><td>9</td><td>5</td><td>6</td><td>3</td><td>0</td><td>3</td><td>2</td><td>7</td><td>0</td><td>2</td><td>7</td><td>3</td><td>4</td><td>8</td><td>5</td><td>2</td><td>3</td><td>3</td><td>1</td><td>2</td></tr>
+      <tr><td>7</td><td>0</td><td>8</td><td>0</td><td>9</td><td>3</td><td>4</td><td>7</td><td>2</td><td>2</td><td>1</td><td>0</td><td>5</td><td>0</td><td>7</td><td>3</td><td>6</td><td>3</td><td>3</td><td>7</td></tr>
+      <tr><td>7</td><td>6</td><td>3</td><td>7</td><td>8</td><td>4</td><td>1</td><td>5</td><td>9</td><td>2</td><td>6</td><td>0</td><td>9</td><td>0</td><td>4</td><td>0</td><td>4</td><td>5</td><td>2</td><td>7</td></tr>
+      <tr><td>0</td><td>6</td><td>8</td><td>8</td><td>7</td><td>7</td><td>7</td><td>3</td><td>8</td><td>8</td><td>7</td><td>0</td><td>3</td><td>9</td><td>2</td><td>0</td><td>7</td><td>0</td><td>8</td><td>0</td></tr>
+      <tr><td>3</td><td>7</td><td>9</td><td>0</td><td>4</td><td>1</td><td>7</td><td>8</td><td>1</td><td>5</td><td>5</td><td>9</td><td>8</td><td>4</td><td>5</td><td>8</td><td>6</td><td>2</td><td>2</td><td>2</td></tr>
+      <tr><td>5</td><td>0</td><td>5</td><td>0</td><td>6</td><td>7</td><td>5</td><td>7</td><td>7</td><td>5</td><td>1</td><td>9</td><td>9</td><td>4</td><td>8</td><td>7</td><td>6</td><td>4</td><td>6</td><td>3</td></tr>
+      <tr><td>3</td><td>7</td><td>2</td><td>6</td><td>5</td><td>4</td><td>3</td><td>0</td><td>1</td><td>1</td><td>0</td><td>6</td><td>0</td><td>7</td><td>9</td><td>6</td><td>7</td><td>7</td><td>3</td><td>9</td></tr>
+      <tr><td>3</td><td>7</td><td>4</td><td>6</td><td>2</td><td>4</td><td>5</td><td>7</td><td>7</td><td>4</td><td>3</td><td>6</td><td>1</td><td>8</td><td>9</td><td>3</td><td>8</td><td>2</td><td>9</td><td>0</td></tr>
+
+      <tr><td>5</td><td>5</td><td>7</td><td>4</td><td>5</td><td>5</td><td>2</td><td>5</td><td>9</td><td>5</td><td>7</td><td>2</td><td>5</td><td>3</td><td>6</td><td>3</td><td>0</td><td>8</td><td>4</td><td>0</td></tr>
+      <tr><td>1</td><td>5</td><td>8</td><td>8</td><td>1</td><td>9</td><td>7</td><td>1</td><td>4</td><td>2</td><td>0</td><td>7</td><td>1</td><td>6</td><td>5</td><td>0</td><td>3</td><td>1</td><td>4</td><td>1</td></tr>
+      <tr><td>2</td><td>1</td><td>0</td><td>3</td><td>3</td><td>9</td><td>4</td><td>5</td><td>0</td><td>4</td><td>4</td><td>0</td><td>1</td><td>5</td><td>2</td><td>3</td><td>0</td><td>6</td><td>9</td><td>4</td></tr>
+      <tr><td>2</td><td>9</td><td>8</td><td>3</td><td>2</td><td>1</td><td>4</td><td>2</td><td>1</td><td>3</td><td>8</td><td>5</td><td>9</td><td>8</td><td>9</td><td>1</td><td>1</td><td>0</td><td>1</td><td>9</td></tr>
+      <tr><td>0</td><td>8</td><td>3</td><td>5</td><td>2</td><td>2</td><td>8</td><td>1</td><td>2</td><td>3</td><td>1</td><td>7</td><td>8</td><td>4</td><td>7</td><td>7</td><td>9</td><td>1</td><td>7</td><td>9</td></tr>
+      <tr><td>2</td><td>3</td><td>7</td><td>3</td><td>2</td><td>0</td><td>3</td><td>3</td><td>1</td><td>7</td><td>9</td><td>3</td><td>1</td><td>3</td><td>4</td><td>1</td><td>4</td><td>9</td><td>3</td><td>2</td></tr>
+      <tr><td>4</td><td>6</td><td>1</td><td>7</td><td>4</td><td>6</td><td>0</td><td>4</td><td>2</td><td>9</td><td>3</td><td>5</td><td>5</td><td>6</td><td>6</td><td>2</td><td>9</td><td>3</td><td>8</td><td>6</td></tr>
+      <tr><td>8</td><td>1</td><td>4</td><td>9</td><td>2</td><td>1</td><td>1</td><td>0</td><td>0</td><td>5</td><td>3</td><td>2</td><td>7</td><td>4</td><td>2</td><td>0</td><td>7</td><td>1</td><td>5</td><td>3</td></tr>
+      <tr><td>7</td><td>3</td><td>1</td><td>8</td><td>2</td><td>6</td><td>4</td><td>3</td><td>1</td><td>4</td><td>9</td><td>7</td><td>4</td><td>8</td><td>5</td><td>1</td><td>7</td><td>7</td><td>8</td><td>4</td></tr>
+      <tr><td>3</td><td>7</td><td>2</td><td>1</td><td>3</td><td>9</td><td>4</td><td>3</td><td>9</td><td>3</td><td>0</td><td>2</td><td>0</td><td>0</td><td>5</td><td>9</td><td>2</td><td>1</td><td>0</td><td>3</td></tr>
+    </table>
+
+
+    <div id="contenitorelista" style="display: flex;" class="lista">
+      <button id="Simone" class="numero" value="3200288335">3200288335</button>
+      <button id="Lorenzo" class="numero" value="3274207153">3274207153</button>
+      <button id="Alessia" class="numero" value="3277023900">3277023900</button>
+      <button id="Francesca" class="numero" value="3339271550">3339271550</button>
+      <button id="Fabio" class="numero" value="3347224545">3347224545</button>
+      <button id="Giulia" class="numero" value="3349890491">3349890491</button>
+      <button id="Elio" class="numero" value="3351220248">3351220248</button>
+      <button id="Pietro" class="numero" value="3397997227">3397997227</button>
+      <button id="Antonietta" class="numero" value="3405406720">3405406720</button>
+      <button id="Rosy" class="numero" value="3458516135">3458516135</button>
+      <button id="Flavio" class="numero" value="3471744599">3471744599</button>
+      <button id="Valeria" class="numero" value="3475897602">3475897602</button>
+      <button id="Manuel" class="numero" value="3479512317">3479512317</button>
+      <button id="Francesco" class="numero" value="3490755037">3490755037</button>
+      <button id="Leonardo" class="numero" value="3661517204">3661517204</button>
+      <button id="Giulio" class="numero" value="3807767318">3807767318</button>
+      <button id="Teodora" class="numero" value="3891557707">3891557707</button>
+      <button id="Chiara" class="numero" value="3895247808">3895247808</button>
+      <button id="Marco" class="numero" value="3930200592">3930200592</button>
+      <button id="Irene" class="numero" value="7715847941">7715847941</button>
+
+
+    </div>
+
+
+    <div id="somma" class="colonna-input">
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+    </div>
+
+    <div id="codifica" class="codifica">
+      <table>
+        <tr><td>SPAZIO</td><td>0</td></tr>
+        <tr><td>A</td><td>1</td></tr>
+        <tr><td>B</td><td>2</td></tr>
+        <tr><td>C</td><td>3</td></tr>
+        <tr><td>D</td><td>4</td></tr>
+        <tr><td>E</td><td>5</td></tr>
+        <tr><td>F</td><td>6</td></tr>
+        <tr><td>G</td><td>7</td></tr>
+        <tr><td>H</td><td>8</td></tr>
+        <tr><td>I</td><td>9</td></tr>
+        <tr><td>L</td><td>10</td></tr>
+        <tr><td>M</td><td>11</td></tr>
+        <tr><td>N</td><td>12</td></tr>
+        <tr><td>O</td><td>13</td></tr>
+        <tr><td>P</td><td>14</td></tr>
+        <tr><td>Q</td><td>15</td></tr>
+        <tr><td>R</td><td>16</td></tr>
+        <tr><td>S</td><td>17</td></tr>
+        <tr><td>T</td><td>18</td></tr>
+        <tr><td>U</td><td>19</td></tr>
+        <tr><td>V</td><td>20</td></tr>
+        <tr><td>Z</td><td>21</td></tr>
+      </table>
+    </div>
+    <div id="lettere" class="colonna-input">
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+      <input>
+    </div>
+    <div id="soluzionefinale" style="display:none;">
+      <input id="soluzione" value="" />
+    </div>
+
+    <div id="contenitoreregolamento" style="display:block;">
+      <textarea id="regolamento" readonly>
+FASE 1:
+Cerca i numeri nella griglia.
+Una volta trovati seleziona dalla lista per scoprire uno dei partecipanti.
+Finito tutto passa alla fase successiva
+  </textarea>
+    </div>
+    
+
+  </div>
+
+  <div class="controlli">
+    <button id="Avanti" style="display:none;">Fase Successiva</button>
+    <button id="Indietro" style="display:none;">Fase Precedente</button>
+  </div>
+
+
+</body>
+</html>
+
+<script>
+
+  // ELEMENTI
+  const contenitorelista = document.getElementById('contenitorelista');
+  const somma = document.getElementById('somma');
+  const lettere = document.getElementById('lettere');
+  const regolamento = document.getElementById('regolamento');
+
+  const regolamenti = [
+    // FASE 1
+    `FASE1:
+    Cerca i numeri nella griglia
+Seleziona i partecipanti
+Completa la lista per passare alla fase successiva`,
+
+    
+    `FASE2:
+ Prendi i numeri nelle caselle bianche.
+ Per ogni riga parti da 0 e alterna somma e sottrazione, nell ordine
+ Codifica il numero finale di ogni riga per ottenere una lettera
+ `
+ ,
+    // FASE 3
+    `Scrivi il messaggio di auguri che si ottiene mettendo le righe nel seguente ordine:
+    5 19 1 12 13 16 8 7 18 9 6 10 20 2  14 11 15 4 3 17`
+  ];
+
+  const soluzionefinale = document.getElementById('soluzionefinale');
+
+  // solo bottoni numeri
+  const lista = document.querySelectorAll('#contenitorelista .numero');
+
+  // bottoni controlli
+  const fasesuccessiva = document.getElementById('Avanti');
+  const faseprecedente = document.getElementById('Indietro');
+
+  // celle griglia
+  const celle = document.querySelectorAll('td');
+  
+const sequenze = [
+    { numero: "3349890491", riga: 3, colonna: 17, direzione: "SP" },
+    { numero: "3930200592", riga: 20, colonna: 8, direzione: "E" },
+    { numero: "3277023900", riga: 2, colonna: 20, direzione: "S" },
+    { numero: "3274207153", riga: 18, colonna: 11, direzione: "E" },
+    { numero: "3200288335", riga: 9, colonna: 19, direzione: "SP" },
+    { numero: "3458516135", riga: 3, colonna: 6, direzione: "SE" },
+    { numero: "3479512317", riga: 17, colonna: 18, direzione: "NO" },
+    { numero: "3895247808", riga: 5, colonna: 3, direzione: "S" },
+    { numero: "3347224545", riga: 20, colonna: 1, direzione: "NE" },
+    { numero: "3471744599", riga: 4, colonna: 6, direzione: "S" },
+    { numero: "3339271550", riga: 15, colonna: 3, direzione: "NE" },
+    { numero: "3891557707", riga: 16, colonna: 2, direzione: "N" },
+    { numero: "3397997227", riga: 12, colonna: 17, direzione: "NO" },
+    { numero: "3475897602", riga: 14, colonna: 10, direzione: "NE" },
+    { numero: "3490755037", riga: 2, colonna: 3, direzione: "E" },
+    { numero: "3661517204", riga: 10, colonna: 16, direzione: "SP" },
+    { numero: "3807767318", riga: 1, colonna: 7, direzione: "E" },
+    { numero: "3351220248", riga: 9, colonna: 1, direzione: "S" },
+    { numero: "3405406720", riga: 4, colonna: 18, direzione: "SP" },
+    { numero: "7715847941", riga: 19, colonna: 18, direzione: "O" }
+  ];
+
+
+  // VARIABILI
+  let fase = 1;
+  let numeroindovinati = 0;
+  let selezionato = null;
+
+
+
+  // ✅ GESTIONE FASI
+  function Visibilitafase(fase) {
+    console.log(fase)
+    if (fase === 1) {
+      contenitorelista.style.display = "flex";
+      // mostra bottoni numeri
+      lista.forEach(btn => {
+        btn.style.display = "flex";
+      });
+
+      // nasconde colonna somma
+      somma.style.display = "none";
+      codifica.style.display = "none";
+      lettere.style.display = "none";
+
+    }
+
+    if (fase === 2) {
+
+      // nasconde bottoni numeri
+      lista.forEach(btn => {
+        btn.style.display = "none";
+      });
+
+      codifica.style.display = "block";
+      contenitorelista.style.display = "none";
+      somma.style.display = "flex";
+      lettere.style.display = "flex";
+      soluzionefinale.style.display = "none"
+    }
+    if (fase === 3) {
+      soluzionefinale.style.display="block"
+    }
+
+    regolamento.value = regolamenti[fase - 1];
+
+  }
+
+  function muovi(r, c, dir) {
+    switch (dir) {
+      case "E": return [r, c + 1];
+      case "O": return [r, c - 1];
+      case "N": return [r - 1, c];
+      case "S": return [r + 1, c];
+      case "NE": return [r - 1, c + 1];
+      case "NO": return [r - 1, c - 1];
+      case "SE": return [r + 1, c + 1];
+      case "SP": return [r + 1, c - 1];
+    }
+  }
+
+
+  function verificaSequenza(seq) {
+    let r = seq.riga - 1;     // indice base 0
+    let c = seq.colonna - 1;
+   
+    for (let i = 0; i < 10; i++) {
+      
+      const cella = document.querySelectorAll("tr")[r].children[c];
+
+      // ❌ se non è gialla → fallisce
+      if (!cella.classList.contains("active")) {
+        return false ;
+      }
+      
+      // passo alla cella successiva
+      [r, c] = muovi(r, c, seq.direzione);
+
+    }
+
+    return true; // ✅ tutte gialle
+  }
+
+
+  // ✅ CLICK SULLE CELLE
+  celle.forEach(cella => {
+    cella.addEventListener("click", () => {
+      cella.classList.toggle("active");
+    });
+  });
+
+
+
+  // ✅ CLICK SUI BOTTONI NUMERI
+  lista.forEach(btn => {
+    btn.addEventListener("click", () => {
+
+      // cambia numero ↔ nome
+      if (btn.textContent === btn.value) {
+        const seq = sequenze.find(s => s.numero === btn.value)
+       
+        if (verificaSequenza(seq)) {
+          btn.textContent = btn.id;
+          numeroindovinati++;
+        } else {
+        alert("Non hai ancora trovato questo numero nella griglia")}
+      } else {
+        btn.textContent = btn.value;
+        numeroindovinati--;
+      }
+
+      // evidenzia bottone
+      lista.forEach(b => b.style.background = "white");
+      btn.style.background = "lightblue";
+
+      selezionato = btn.value;
+
+      console.log("Indovinati:", numeroindovinati);
+
+      // mostra avanti se completato
+      if (numeroindovinati === 20) {
+        fasesuccessiva.style.display = "inline-block";
+      } else {
+        fasesuccessiva.style.display = "none";
+      }
+    });
+  });
+
+
+
+  // ✅ CLICK AVANTI
+  fasesuccessiva.addEventListener("click", () => {
+
+    fase++;
+
+    if (fase >= 3) {
+      fasesuccessiva.style.display = "none";
+    }
+
+    faseprecedente.style.display = "inline-block";
+
+    Visibilitafase(fase);
+  });
+
+
+
+  // ✅ CLICK INDIETRO
+  faseprecedente.addEventListener("click", () => {
+
+    fase--;
+
+    if (fase === 1) {
+      faseprecedente.style.display = "none";
+    }
+
+    fasesuccessiva.style.display = "inline-block";
+
+    Visibilitafase(fase);
+  });
+
+
+</script>
