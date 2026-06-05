@@ -248,6 +248,7 @@ Finito tutto passa alla fase successiva
   </div>
 
   <div class="controlli">
+    <button id="Aiuto" style =" background-color:lawngreen;">Aiuto</button>
     <button id="Avanti" style="display:none;">Fase Successiva</button>
     <button id="Indietro" style="display:none;">Fase Precedente</button>
   </div>
@@ -274,8 +275,9 @@ Completa la lista per passare alla fase successiva`,
     
     `FASE2:
  Prendi i numeri nelle caselle bianche.
- Per ogni riga parti da 0 e alterna somma e sottrazione, nell ordine
- Codifica il numero finale di ogni riga per ottenere una lettera
+ Per ogni riga parti da 0 e alterna somma e sottrazione, nell'ordine.
+ Segna il numero trovato nella prima colonna.
+ Codifica il numero finale di ogni riga per ottenere una lettera e segnala nella seconda colonna
  `
  ,
     // FASE 3
@@ -291,7 +293,8 @@ Completa la lista per passare alla fase successiva`,
   // bottoni controlli
   const fasesuccessiva = document.getElementById('Avanti');
   const faseprecedente = document.getElementById('Indietro');
-
+  const Aiuto = document.getElementById('Aiuto');
+  
   // celle griglia
   const celle = document.querySelectorAll('td');
   
@@ -425,6 +428,7 @@ const sequenze = [
       } else {
         btn.textContent = btn.value;
         numeroindovinati--;
+        
       }
 
       // evidenzia bottone
@@ -474,6 +478,54 @@ const sequenze = [
     fasesuccessiva.style.display = "inline-block";
 
     Visibilitafase(fase);
+  });
+  const sequenzavalorifase2 = ["13", "12", "3", "9", "2", "5", "11", "13", "10", "1", "0", "12", "0", "13", "12", "3", "13", "14", "19", "12"];
+  Aiuto.addEventListener("click", () => {
+    let stringa=""
+    if (fase == 1) {
+
+      const bottoni = document.querySelectorAll('#contenitorelista .numero');
+      if (numeroindovinati < 20) {
+        let flag = 0;
+        for (const btn of bottoni) {
+          
+          if (btn.textContent == btn.value && flag==0) {
+            stringa = "Il numero " + btn.textContent + " parte da cella in riga " + sequenze.find(s => s.numero === btn.value).riga + " e colonna " + sequenze.find(s => s.numero === btn.value).colonna;
+            alert(stringa);
+            flag = 1;
+          }
+        }
+      } else {
+        alert("Non hai bisogno di ricevere altri aiuti in questa fase. Se non sei sicuro di un numero clicca sul nome della persona e richiedi l' aiuto");
+      }
+    }
+    if (fase >=2) {
+  
+      let i = 0;
+      const inputs = document.querySelectorAll('#somma input');
+      for (const inp of inputs ) {
+        if (inp.value != sequenzavalorifase2[i] && i < 20) {
+          if (inp.value == "") {
+            stringa = "La riga " + (i + 1) + " ha come numero segreto " + sequenzavalorifase2[i];
+          } else {
+            stringa = "La riga " + (i + 1) + " ha valore segreto sbagliato! Deve essere " + sequenzavalorifase2[i];
+          }
+          alert(stringa);
+          i = 20
+        } else {
+          i = i + 1
+          if (i == 20) {
+            if (fase == 2) {
+              alert("Tutti i numeri segreti trovati sono giusti. Associare ad ogni numero la lettera corrispondente e poi passare alla fase successiva");
+            } else {
+              alert("Tutti i numeri segreti trovati sono giusti.Ricontrollare la corrispondenza con le lettere e poi seguire le istruzioni per scoprire la frase finale");
+            }
+          }
+        }
+      }
+    }
+    
+    
   });
 
 
